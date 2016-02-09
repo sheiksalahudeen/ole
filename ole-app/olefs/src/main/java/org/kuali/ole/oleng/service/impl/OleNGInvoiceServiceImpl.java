@@ -340,7 +340,7 @@ public class OleNGInvoiceServiceImpl implements OleNGInvoiceService {
                 }
                 PurchaseOrderService purchaseOrderService = (PurchaseOrderService) SpringContext.getBean("purchaseOrderService");
                 purchaseOrderDocument = purchaseOrderService.getPurchaseOrderByDocumentNumber(poItem.getDocumentNumber());
-                if (itemMap.containsKey("noOfItems") && itemMap.get("noOfItems")==1) {
+                if (itemMap.containsKey("noOfItems") && (Integer)(itemMap.get("noOfItems"))==1) {
                     oleInvoiceItem.setPurchaseOrderIdentifier(purchaseOrderDocument.getPurapDocumentIdentifier());
                 }
                 oleInvoiceItem.setItemLineNumber(poItem.getItemLineNumber());
@@ -371,7 +371,7 @@ public class OleNGInvoiceServiceImpl implements OleNGInvoiceService {
                     accountingLine.add(invoiceAccount);
 
                 } else {
-                    if (itemMap.containsKey("noOfItems") && itemMap.get("noOfItems")==1) {
+                    if (itemMap.containsKey("noOfItems") && (Integer)(itemMap.get("noOfItems"))==1) {
                         if (StringUtils.isNotBlank(invoiceRecord.getFundCode())) {
                             accountingLine = getAccountingLinesFromFundCode(invoiceRecord, oleInvoiceItem);
                         } else {
